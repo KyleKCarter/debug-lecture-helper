@@ -6,6 +6,8 @@ const session = require('express-session');
 
 const app = express();
 
+const {SERVER_PORT, SESSION_SECRET} = process.env
+
 app.use(
   session({
     secret: SESSION_SECRET,
@@ -14,6 +16,7 @@ app.use(
   })
 );
 app.use((req, res, next) => {
+  console.log('hit')
   let badWords = ['knucklehead', 'jerk', 'internet explorer'];
   if (req.body.message) {
     let badWordsExist = true;
